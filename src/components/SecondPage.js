@@ -50,7 +50,7 @@ function SecondPage({ questions, setShowSecondPage }) {
 
     </div>
   )
-}
+};
 
 
 export default SecondPage;

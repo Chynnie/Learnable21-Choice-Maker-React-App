@@ -61,6 +61,6 @@ function FirstPage({ setShowSecondPage, questions, setQuestions }) {
       </button>
     </div>
   );
-}
+};
 
 export default FirstPage;
