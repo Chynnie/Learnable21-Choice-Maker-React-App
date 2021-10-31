@@ -1,51 +1,66 @@
-import React from "react";
-// import ReactDOM from "react-dom";
+import React, { useState } from "react";
+import Textfield from "./Textfield";
 
-function FirstPage() {
+function FirstPage({ setShowSecondPage, questions, setQuestions }) {
+  const [question, setQuestion] = useState({
+    question: "",
+    option1: "",
+    option2: "",
+    option3: ""
+  });
+  const handleChange = (e) => {
+    setQuestion({ ...question, [e.target.name]: e.target.value });
+  };
+  const handleSubmit = () => {
+    setQuestions([...questions, question]);
+    setShowSecondPage(true);
+  };
 
   return (
     <div className="container">
-      <div>
+      <form method="get">
         <h4>Question</h4>
-        <form method="get">
-          <input 
-            type="text" 
-            placeholder="Enter Question-----" 
-          />
-        </form>
-      </div>
-              
-      <div>
+        <Textfield 
+          type="text" 
+          placeholder="Enter Question-----" 
+          name="question"
+          onChange={handleChange}
+        />
         <h4>Answer Options</h4>
-        <form method="get">
-          <div>
-            <input 
-              type="text" 
-              placeholder="A:"
-            />
-          </div>
-          <div>
-            <input 
-              type="text" 
-              placeholder="B:"
-            />
-            </div>
-            <div>
-            <input 
-              type="text" 
-              placeholder="C:"
-            />
-            </div>
-          </form>
-        </div>
-              
-      <div className="btn">
-        <button className="answerBtn">Answer!</button>
-      </div>        
+        <Textfield 
+          type="text"
+          placeholder="A:"
+          name="option1"
+          onChange={handleChange}
+        />
+        <Textfield 
+          type="text"
+          placeholder="B:"
+          name="option2"
+          onChange={handleChange}
+        />
+        <Textfield 
+          type="text"
+          placeholder="C:"
+          name="option3"
+          onChange={handleChange}
+        />
+      </form>
+      
+      <button 
+        className="answerBtn"
+        onClick={handleSubmit}
+        disabled={
+          !question.question ||
+          !question.option1 ||
+          !question.option2 ||
+          !question.option3
+        }
+      >
+        Answer!
+      </button>
     </div>
   );
 }
-
-
 
 export default FirstPage;

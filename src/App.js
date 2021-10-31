@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 import FirstPage from './components/FirstPage';
 import SecondPage from './components/SecondPage';
 
 function App() {
-
-  const headerName = <h1 className="App-header">Choice Maker App</h1>
+  const [showSecondPage, setShowSecondPage] = useState(false);
+  const [questions, setQuestions] = useState([]);
+  
   return (
     <div className="App">
       <div>
-        <h1>{headerName}</h1>
+        <h1 className="App-header">Choice Maker App</h1>
       </div>
-
-      <FirstPage />
-      <SecondPage />
+      {showSecondPage === false ? (
+        <FirstPage
+          setShowSecondPage={setShowSecondPage}
+          questions={questions}
+          setQuestions={setQuestions}
+        />
+      ) : (
+        <SecondPage 
+          questions={questions}
+          setShowSecondPage={setShowSecondPage}
+        />
+      )}
     </div>
   );
 }
