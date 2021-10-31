@@ -14,7 +14,7 @@ function SecondPage({ questions, setShowSecondPage }) {
   };
   useEffect(() => {
     randOption();
-  },[])
+  },[]);
     
   return (
     <div className="container">
